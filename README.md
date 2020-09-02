@@ -61,9 +61,9 @@ Or install it yourself as:
   - [ ] GET `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}`
   - [ ] DELETE `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}`
 - Profile
-  - [ ] GET `/v1/{accountId}/profiles`
+  - [x] GET `/v1/{accountId}/profiles`
   - [ ] POST `/v1/{accountId}/profiles`
-  - [ ] GET `/v1/{accountId}/profiles/{profileId}`
+  - [x] GET `/v1/{accountId}/profiles/{profileId}`
   - [ ] PATCH `/v1/{accountId}/profiles/{profileId}`
   - [ ] DELETE `/v1/{accountId}/profiles/{profileId}`
   - [x] GET `/v1/subdomains/{subdomain}`

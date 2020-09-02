@@ -21,28 +21,53 @@ module YouCanBookMe
     end
 
     #
-    # Account
-    #
-
-    def account_path
-      "/#{API_VERSION}/#{@account_id}"
-    end
-
-    #
     # Get basic information about current account.
     #
     # @param [Array<String>] fields the fields which are included in the response.
     # @return [Account]
+    # @since 0.0.1
     def account(fields = nil)
-      params = set_fields_into_params(fields)
+      params = set_fields_into_params fields
       res = @connection.get account_path, params
       Account.new res.body, self
+    end
+
+    #
+    # Returns a single Profile by its id.
+    #
+    # @param [String] profile_id  the profile's unique id.
+    # @param [Array<String>] fields the fields which are included in the response.
+    # @return [Profile]
+    # @since 0.0.2
+    def profile(profile_id, fields = nil)
+      check_not_empty profile_id, 'profile_id'
+      params = set_fields_into_params fields
+      res = @connection.get profile_path(profile_id), params
+      Profile.new res.body, self
+    end
+
+    #
+    # Get List of Profile.
+    #
+    # @param [Array<String>] fields the fields which are included in the response.
+    # @return [Array<Profile>]
+    # @since 0.0.2
+    def profiles(fields = nil)
+      params = set_fields_into_params fields
+      res = @connection.get profile_path, params
+      items = res.body
+      unless items.is_a? Array
+        raise YouCanBookMe::Error, 'the response data is not Array.'
+      end
+
+      items.map { |item| Profile.new item, self }
     end
 
     #
     # Get suggested subdomains
     #
     # @return [Array<String>]
+    # @since 0.0.1
     def suggested_subdomains
       res = @connection.get "/#{API_VERSION}/suggestedsubdomains"
       res.body
@@ -54,6 +79,7 @@ module YouCanBookMe
     # @param [String] subdomain
     # @return [Boolean]
     # @raise [YouCanBookMe::Error] if the subdomain arg is empty.
+    # @since 0.0.1
     def subdomain_available?(subdomain)
       check_not_empty subdomain, 'subdomain'
       res = @connection.get "/#{API_VERSION}/subdomains/#{subdomain}"
@@ -80,6 +106,17 @@ module YouCanBookMe
       return params if fields.empty?
 
       params.merge(fields: fields.join(','))
+    end
+
+    def account_path
+      "/#{API_VERSION}/#{@account_id}"
+    end
+
+    def profile_path(profile_id = nil)
+      path = "#{account_path}/profiles"
+      return path unless profile_id
+
+      "#{path}/#{profile_id}"
     end
   end
 end

@@ -1,0 +1,9 @@
+{
+  "id": "PRO001",
+  "accountId": "ACC001",
+  "title": "FooBar1",
+  "description": "FooBar1 description",
+  "subdomain": "foobar1",
+  "timeZone": null,
+  "status": "ONLINE"
+}

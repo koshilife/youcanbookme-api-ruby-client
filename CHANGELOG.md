@@ -1,3 +1,9 @@
+# 0.0.2.alpha
+
+- support APIs
+  - GET `/v1/{accountId}/profiles`
+  - GET `/v1/{accountId}/profiles/{profileId}`
+
 # 0.0.1.alpha
 
 - Initial release.
