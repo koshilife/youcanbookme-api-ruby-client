@@ -6,7 +6,7 @@ require 'faraday_middleware'
 module YouCanBookMe
   # Command for HTTP request.
   class HttpCommand
-    include CommonModule
+    include Loggable
 
     def initialize(account_id, password_or_token, host = nil)
       @account_id = account_id
