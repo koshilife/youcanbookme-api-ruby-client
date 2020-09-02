@@ -8,9 +8,8 @@ module AssertHelper
   end
 
   def assert_account001_many_fields(acc)
-    assert_equal 'ACC001', acc.id
+    assert_account001(acc)
     assert_equal '2020-08-01T13:00:00Z', acc.createdAt
-    assert_equal 'foobar@example.com', acc.email
     assert_equal 'Bar', acc.familyName
     assert_equal 'Foo', acc.givenName
     assert_equal true, acc.gridBranding
@@ -18,7 +17,6 @@ module AssertHelper
     assert_equal 'ja', acc.locale
     assert_equal 'UTC', acc.timeZone
     assert_equal 'Developer', acc.tags
-    assert_equal 0, acc.smsCredits
     assert_equal 'foobar.zoom@example.com', acc.zoomEmailAddress
     assert_equal true, acc.contactHigh
     assert_equal true, acc.contactLow
@@ -76,6 +74,131 @@ module AssertHelper
     proc_assert_profile.call(acc.profiles[1], 'PRO002')
     proc_assert_profile.call(acc.profiles[2], 'PRO003')
   end
+
+  def assert_profile001(profile)
+    assert_equal 'PRO001', profile.id
+    assert_equal 'ACC001', profile.accountId
+    assert_equal 'FooBar1', profile.title
+    assert_equal 'FooBar1 description', profile.description
+    assert_equal 'foobar1', profile.subdomain
+    assert_nil profile.timeZone
+    assert_equal 'ONLINE', profile.status
+  end
+
+  def assert_profile001_many_fields(profile)
+    assert_profile001(profile)
+    assert_equal '2020-08-01T10:30:00Z', profile.createdAt
+    assert_equal '2020-08-02T10:30:00Z', profile.updatedAt
+    assert profile.timeZoneOverride
+    assert profile.captchaActive
+    assert_nil profile.locale
+    assert_equal '', profile.accessCode
+    assert_nil profile.timesPattern
+    assert_nil profile.datesPattern
+    assert_equal 6, profile.questions.length
+    assert_equal 0, profile.remoteReminders.length
+    assert !profile.afterwards.nil?
+    assert !profile.vouchers.nil?
+    assert !profile.calendars.nil?
+    assert_equal 1, profile.availableAccounts.length
+    assert !profile.cancelOrReschedule.nil?
+    assert !profile.display.nil?
+    assert !profile.payments.nil?
+    assert !profile.appointmentTypes.nil?
+    assert !profile.teamMembers.nil?
+    assert !profile.tentative.nil?
+    assert !profile.times.nil?
+    assert_equal 'REALTIME_TOPIC_001', profile.realtimeTopic
+    assert_equal false, profile.htmlAllowed
+    assert_equal false, profile.protectedByAccessCode
+    assert !profile.services.nil?
+    assert_equal '', profile.password
+    assert_equal 8, profile.actions.length
+  end
+
+  def assert_profile002(profile)
+    assert_equal 'PRO002', profile.id
+    assert_equal 'ACC001', profile.accountId
+    assert_equal 'FooBar2', profile.title
+    assert_equal 'FooBar2 description', profile.description
+    assert_equal 'foobar2', profile.subdomain
+    assert_nil profile.timeZone
+    assert_equal 'OFFLINE', profile.status
+  end
+
+  def assert_profile002_many_fields(profile)
+    assert_profile002(profile)
+    assert_equal '2020-08-11T10:30:00Z', profile.createdAt
+    assert_equal '2020-08-12T10:30:00Z', profile.updatedAt
+    assert profile.timeZoneOverride
+    assert profile.captchaActive
+    assert_nil profile.locale
+    assert_nil profile.accessCode
+    assert_nil profile.timesPattern
+    assert_nil profile.datesPattern
+    assert_equal 6, profile.questions.length
+    assert_equal 0, profile.remoteReminders.length
+    assert !profile.afterwards.nil?
+    assert !profile.vouchers.nil?
+    assert !profile.calendars.nil?
+    assert_equal 1, profile.availableAccounts.length
+    assert !profile.cancelOrReschedule.nil?
+    assert !profile.display.nil?
+    assert !profile.payments.nil?
+    assert !profile.appointmentTypes.nil?
+    assert !profile.teamMembers.nil?
+    assert !profile.tentative.nil?
+    assert !profile.times.nil?
+    assert_equal 'REALTIME_TOPIC_002', profile.realtimeTopic
+    assert_equal false, profile.htmlAllowed
+    assert_equal false, profile.protectedByAccessCode
+    assert !profile.services.nil?
+    assert_nil profile.password
+    assert_equal 8, profile.actions.length
+  end
+
+  def assert_profile003(profile)
+    assert_equal 'PRO003', profile.id
+    assert_equal 'ACC001', profile.accountId
+    assert_equal 'FooBar3', profile.title
+    assert_equal 'FooBar3 description', profile.description
+    assert_equal 'foobar3', profile.subdomain
+    assert_nil profile.timeZone
+    assert_equal 'ONLINE', profile.status
+  end
+
+  def assert_profile003_many_fields(profile)
+    assert_profile003(profile)
+    assert_equal '2020-08-21T10:30:00Z', profile.createdAt
+    assert_equal '2020-08-22T10:30:00Z', profile.updatedAt
+    assert profile.timeZoneOverride
+    assert profile.captchaActive
+    assert_nil profile.locale
+    assert_equal '', profile.accessCode
+    assert_nil profile.timesPattern
+    assert_nil profile.datesPattern
+    assert_equal 3, profile.questions.length
+    assert_equal 0, profile.remoteReminders.length
+    assert !profile.afterwards.nil?
+    assert !profile.vouchers.nil?
+    assert !profile.calendars.nil?
+    assert_equal 1, profile.availableAccounts.length
+    assert !profile.cancelOrReschedule.nil?
+    assert !profile.display.nil?
+    assert !profile.payments.nil?
+    assert !profile.appointmentTypes.nil?
+    assert !profile.teamMembers.nil?
+    assert !profile.tentative.nil?
+    assert !profile.times.nil?
+    assert_equal 'REALTIME_TOPIC_003', profile.realtimeTopic
+    assert_equal false, profile.htmlAllowed
+    assert_equal false, profile.protectedByAccessCode
+    assert !profile.services.nil?
+    assert_equal '', profile.password
+    assert_equal 7, profile.actions.length
+  end
+
+  private
 
   def assert_error(proc, ex_message)
     e = assert_raises YouCanBookMe::Error do

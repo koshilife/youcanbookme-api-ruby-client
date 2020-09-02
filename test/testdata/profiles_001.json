@@ -1,0 +1,29 @@
+[
+  {
+    "id": "PRO001",
+    "accountId": "ACC001",
+    "title": "FooBar1",
+    "description": "FooBar1 description",
+    "subdomain": "foobar1",
+    "timeZone": null,
+    "status": "ONLINE"
+  },
+  {
+    "id": "PRO002",
+    "accountId": "ACC001",
+    "title": "FooBar2",
+    "description": "FooBar2 description",
+    "subdomain": "foobar2",
+    "timeZone": null,
+    "status": "OFFLINE"
+  },
+  {
+    "id": "PRO003",
+    "accountId": "ACC001",
+    "title": "FooBar3",
+    "description": "FooBar3 description",
+    "subdomain": "foobar3",
+    "timeZone": null,
+    "status": "ONLINE"
+  }
+]

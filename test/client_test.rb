@@ -57,6 +57,56 @@ module YouCanBookMe
     end
 
     #
+    # test for profile
+    #
+
+    def test_that_it_returns_a_specific_profile
+      profile_id = 'PRO001'
+      res_body = load_test_data 'profile_001.json'
+      add_stub_request :get, "#{@base_host}/profiles/#{profile_id}", res_body: res_body
+      assert_profile001 @client.profile profile_id
+
+      res_body = load_test_data 'profile_001_many_fields.json'
+      fields = YouCanBookMe::Profile.fields
+      params = { fields: fields.join(',') }
+      url = "#{@base_host}/profiles/#{profile_id}?#{URI.encode_www_form(params)}"
+      add_stub_request :get, url, res_body: res_body
+      assert_profile001_many_fields @client.profile profile_id, fields
+    end
+
+    def test_that_it_returns_an_argument_error_on_profile
+      proc_profile_id_is_empty = proc do
+        @client.profile ''
+      end
+      assert_required_error proc_profile_id_is_empty, 'profile_id'
+    end
+
+    #
+    # test for profiles
+    #
+
+    def test_that_it_returns_all_items_of_profiles
+      res_body = load_test_data 'profiles_001.json'
+      add_stub_request :get, "#{@base_host}/profiles", res_body: res_body
+      profiles = @client.profiles
+      assert_equal 3, profiles.length
+      assert_profile001 profiles[0]
+      assert_profile002 profiles[1]
+      assert_profile003 profiles[2]
+
+      res_body = load_test_data 'profiles_001_many_fields.json'
+      fields = YouCanBookMe::Profile.fields
+      params = { fields: fields.join(',') }
+      url = "#{@base_host}/profiles?#{URI.encode_www_form(params)}"
+      add_stub_request :get, url, res_body: res_body
+      profiles = @client.profiles fields
+      assert_equal 3, profiles.length
+      assert_profile001_many_fields profiles[0]
+      assert_profile002_many_fields profiles[1]
+      assert_profile003_many_fields profiles[2]
+    end
+
+    #
     # test for suggested_subdomains
     #
 
