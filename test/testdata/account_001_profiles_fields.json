@@ -1,0 +1,140 @@
+{
+  "id": "ACC001",
+  "profiles": [
+    {
+      "id": "PRO001",
+      "actions": [
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CANCELLED_BY_BOOKER",
+          "title": "Cancellation email to you"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_RESCHEDULED_BY_OWNER",
+          "title": "Reschedule email to booker"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CREATED",
+          "title": "Confirmation email to booker"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CANCELLED_BY_OWNER",
+          "title": "Cancellation email to booker"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CREATED",
+          "title": "Confirmation email to you"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_RESCHEDULED_BY_BOOKER",
+          "title": "Reschedule email to you"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_STARTS",
+          "title": "Reminder email to booker"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CREATED",
+          "title": "Confirmation email to Team Member"
+        }
+      ]
+    },
+    {
+      "id": "PRO002",
+      "actions": [
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CANCELLED_BY_BOOKER",
+          "title": "Cancellation email to you"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_RESCHEDULED_BY_OWNER",
+          "title": "Reschedule email to booker"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CREATED",
+          "title": "Confirmation email to booker"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CANCELLED_BY_OWNER",
+          "title": "Cancellation email to booker"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CREATED",
+          "title": "Confirmation email to you"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_RESCHEDULED_BY_BOOKER",
+          "title": "Reschedule email to you"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_STARTS",
+          "title": "Reminder email to booker"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CREATED",
+          "title": "Confirmation email to Team Member"
+        }
+      ]
+    },
+    {
+      "id": "PRO003",
+      "actions": [
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CANCELLED_BY_BOOKER",
+          "title": "Cancellation email to you"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_RESCHEDULED_BY_OWNER",
+          "title": "Reschedule email to booker"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CREATED",
+          "title": "Confirmation email to booker"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CANCELLED_BY_OWNER",
+          "title": "Cancellation email to booker"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CREATED",
+          "title": "Confirmation email to you"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_RESCHEDULED_BY_BOOKER",
+          "title": "Reschedule email to you"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_STARTS",
+          "title": "Reminder email to booker"
+        },
+        {
+          "type": "EMAIL",
+          "anchor": "BOOKING_CREATED",
+          "title": "Confirmation email to Team Member"
+        }
+      ]
+    }
+  ]
+}
