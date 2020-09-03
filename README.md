@@ -37,11 +37,11 @@ Or install it yourself as:
   - [ ] PATCH `/v1/{accountId}/profiles/{profileId}/appointmenttypes/items/{appointmentTypeId}`
   - [ ] DELETE `/v1/{accountId}/profiles/{profileId}/appointmenttypes/items/{appointmentTypeId}`
 - Bookings:
-  - [ ] GET `/v1/{accountId}/bookings`
+  - [x] GET `/v1/{accountId}/bookings`
   - [ ] GET `/v1/{accountId}/firedactions`
-  - [ ] GET `/v1/{accountId}/profiles/{profileId}/bookings`
+  - [x] GET `/v1/{accountId}/profiles/{profileId}/bookings`
   - [ ] POST `/v1/{accountId}/profiles/{profileId}/bookings`
-  - [ ] GET `/v1/{accountId}/profiles/{profileId}/bookings/{bookingId}`
+  - [x] GET `/v1/{accountId}/profiles/{profileId}/bookings/{bookingId}`
   - [ ] PATCH `/v1/{accountId}/profiles/{profileId}/bookings/{bookingId}`
   - [ ] DELETE `/v1/{accountId}/profiles/{profileId}/bookings/{bookingId}`
   - [ ] GET `/v1/{accountId}/profiles/{profileId}/firedactions`

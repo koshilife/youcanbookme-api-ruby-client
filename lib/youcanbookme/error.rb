@@ -3,7 +3,7 @@
 module YouCanBookMe
   # YouCanBookMe module's base error object
   class Error < StandardError
-    include CommonModule
+    include Loggable
 
     def initialize(message = nil)
       msg = "#{self.class} occured."

@@ -1,0 +1,12 @@
+{
+  "id": "PRO001_BOOK001",
+  "title": "PRO001 BOOK001 TITLE",
+  "accountId": "ACC001",
+  "profileId": "PRO001",
+  "createdAt": "2020-08-31T11:30:00Z",
+  "startsAt": "2020-09-04T10:00:00",
+  "endsAt": "2020-09-04T11:00:00",
+  "tentative": "NOT_USED",
+  "timeZone": "Asia/Tokyo",
+  "cancelled": false
+}

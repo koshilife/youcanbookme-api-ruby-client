@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBook.me utility module.
-  module CommonModule
+  # YouCanBook.me logger utility module.
+  module Loggable
     def error_log(msg)
       log msg, :error
     end
