@@ -46,14 +46,110 @@ module YouCanBookMe
       params = { fields: fields.join(',') }
       url = "#{@base_host}?#{URI.encode_www_form(params)}"
       add_stub_request :get, url, res_body: res_body
-      assert_account001_many_fields @client.account fields
+      assert_account001_many_fields @client.account fields: fields
 
       res_body = load_test_data 'account_001_profiles_fields.json'
       fields = ['id', 'profiles', 'profiles.id', 'profiles.actions', 'profiles.actions.anchor', 'profiles.actions.title', 'profiles.actions.type']
       params = { fields: fields.join(',') }
       url = "#{@base_host}?#{URI.encode_www_form(params)}"
       add_stub_request :get, url, res_body: res_body
-      assert_account001_profiles_fields @client.account fields
+      assert_account001_profiles_fields @client.account fields: fields
+    end
+
+    #
+    # test for booking
+    #
+
+    def test_that_it_returns_a_specific_booking
+      profile_id = 'PRO001'
+      booking_id = 'PRO001_BOOK001'
+      res_body = load_test_data 'booking_001.json'
+      url = "#{@base_host}/profiles/#{profile_id}/bookings/#{booking_id}"
+      add_stub_request :get, url, res_body: res_body
+      assert_booking_p001b001 @client.booking profile_id, booking_id
+
+      res_body = load_test_data 'booking_001_many_fields.json'
+      fields = YouCanBookMe::Booking.fields
+      params = { fields: fields.join(',') }
+      url = "#{@base_host}/profiles/#{profile_id}/bookings/#{booking_id}?#{URI.encode_www_form(params)}"
+      add_stub_request :get, url, res_body: res_body
+      booking = @client.booking profile_id, booking_id, fields: fields
+      assert_booking_p001b001_many_fields booking
+    end
+
+    def test_that_it_returns_an_argument_error_on_booking
+      proc_profile_id_is_empty = proc do
+        @client.booking '', 'booking_id'
+      end
+      assert_required_error proc_profile_id_is_empty, 'profile_id'
+      proc_booking_id_is_empty = proc do
+        @client.booking 'profile_id', ''
+      end
+      assert_required_error proc_booking_id_is_empty, 'booking_id'
+    end
+
+    #
+    # test for bookings
+    #
+
+    def test_that_it_returns_all_items_of_bookings
+      res_body = load_test_data 'bookings_001.json'
+      url = "#{@base_host}/bookings"
+      add_stub_request :get, url, res_body: res_body
+      bookings = @client.bookings
+      assert_equal 5, bookings.length
+      assert_booking_p001b001 bookings[0]
+      assert_booking_p001b002 bookings[1]
+      assert_booking_p001b003 bookings[2]
+      assert_booking_p002b001 bookings[3]
+      assert_booking_p003b001 bookings[4]
+
+      res_body = load_test_data 'bookings_001_many_fields.json'
+      fields = YouCanBookMe::Booking.fields
+      params = { fields: fields.join(',') }
+      url = "#{@base_host}/bookings?#{URI.encode_www_form(params)}"
+      add_stub_request :get, url, res_body: res_body
+      bookings = @client.bookings fields: fields
+      assert_equal 5, bookings.length
+      assert_booking_p001b001_many_fields bookings[0]
+      assert_booking_p001b002_many_fields bookings[1]
+      assert_booking_p001b003_many_fields bookings[2]
+      assert_booking_p002b001_many_fields bookings[3]
+      assert_booking_p003b001_many_fields bookings[4]
+    end
+
+    #
+    # test for profile_bookings
+    #
+
+    def test_that_it_returns_all_items_of_profile_bookings
+      profile_id = 'PRO001'
+      res_body = load_test_data 'profile_bookings_001.json'
+      url = "#{@base_host}/profiles/#{profile_id}/bookings"
+      add_stub_request :get, url, res_body: res_body
+      bookings = @client.profile_bookings profile_id
+      assert_equal 3, bookings.length
+      assert_booking_p001b001 bookings[0]
+      assert_booking_p001b002 bookings[1]
+      assert_booking_p001b003 bookings[2]
+
+      res_body = load_test_data 'profile_bookings_001_many_fields.json'
+      fields = YouCanBookMe::Booking.fields
+      params = { fields: fields.join(',') }
+      url = "#{@base_host}/profiles/#{profile_id}/bookings?#{URI.encode_www_form(params)}"
+      add_stub_request :get, url, res_body: res_body
+      bookings = @client.profile_bookings profile_id, fields: fields
+      assert_equal 3, bookings.length
+      assert_booking_p001b001_many_fields bookings[0]
+      assert_booking_p001b002_many_fields bookings[1]
+      assert_booking_p001b003_many_fields bookings[2]
+    end
+
+    def test_that_it_returns_an_argument_error_on_profile_bookings
+      proc_profile_id_is_empty = proc do
+        @client.profile_bookings ''
+      end
+      assert_required_error proc_profile_id_is_empty, 'profile_id'
     end
 
     #
@@ -71,7 +167,7 @@ module YouCanBookMe
       params = { fields: fields.join(',') }
       url = "#{@base_host}/profiles/#{profile_id}?#{URI.encode_www_form(params)}"
       add_stub_request :get, url, res_body: res_body
-      assert_profile001_many_fields @client.profile profile_id, fields
+      assert_profile001_many_fields @client.profile profile_id, fields: fields
     end
 
     def test_that_it_returns_an_argument_error_on_profile
@@ -99,7 +195,7 @@ module YouCanBookMe
       params = { fields: fields.join(',') }
       url = "#{@base_host}/profiles?#{URI.encode_www_form(params)}"
       add_stub_request :get, url, res_body: res_body
-      profiles = @client.profiles fields
+      profiles = @client.profiles fields: fields
       assert_equal 3, profiles.length
       assert_profile001_many_fields profiles[0]
       assert_profile002_many_fields profiles[1]

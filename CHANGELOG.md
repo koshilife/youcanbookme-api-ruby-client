@@ -1,3 +1,10 @@
+# 0.0.3.alpha
+
+- support APIs
+  - GET `/v1/{accountId}/bookings`
+  - GET `/v1/{accountId}/profiles/{profileId}/bookings`
+  - GET `/v1/{accountId}/profiles/{profileId}/bookings/{bookingId}`
+
 # 0.0.2.alpha
 
 - support APIs
