@@ -1,5 +1,12 @@
 {
   "id": "ACC001",
   "email": "foobar@example.com",
+  "sessionToken": "st_SESSION_TOKEN",
+  "trialEndsAt": "2020-09-01T10:00:00Z",
+  "quantityPaidFor": 0,
+  "quantityForFree": 0,
+  "quantityFreeTrial": 30,
+  "quantityAllocated": 0,
+  "planMonths": 0,
   "smsCredits": 0
 }

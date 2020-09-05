@@ -49,19 +49,15 @@ class BaseTest < Minitest::Test
     end
   end
 
-  private
+private
 
   def default_request_headers
     secret = Base64.strict_encode64 "#{@account_id}:#{@password_or_token}"
-    {
-      'Authorization' => "Basic #{secret}"
-    }
+    {'Authorization' => "Basic #{secret}"}
   end
 
   def default_response_headers
-    {
-      'Content-Type' => 'application/json; charset=utf-8'
-    }
+    {'Content-Type' => 'application/json; charset=utf-8'}
   end
 
   def load_test_data(filename)

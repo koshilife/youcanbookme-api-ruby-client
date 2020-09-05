@@ -4,31 +4,72 @@ module AssertHelper
   def assert_account001(acc)
     assert_equal 'ACC001', acc.id
     assert_equal 'foobar@example.com', acc.email
+    assert_equal 'st_SESSION_TOKEN', acc.sessionToken
+    assert_equal '2020-09-01T10:00:00Z', acc.trialEndsAt
+    assert_equal 0, acc.quantityPaidFor
+    assert_equal 0, acc.quantityForFree
+    assert_equal 30, acc.quantityFreeTrial
+    assert_equal 0, acc.quantityAllocated
+    assert_equal 0, acc.planMonths
     assert_equal 0, acc.smsCredits
   end
 
   def assert_account001_many_fields(acc)
     assert_account001(acc)
     assert_equal '2020-08-01T13:00:00Z', acc.createdAt
+    assert_equal '2020-08-10T13:00:00Z', acc.updatedAt
     assert_equal 'Bar', acc.familyName
     assert_equal 'Foo', acc.givenName
-    assert_equal true, acc.gridBranding
     assert_equal 'FooBar.org', acc.organisation
+    assert_equal true, acc.gridBranding
     assert_equal 'ja', acc.locale
     assert_equal 'UTC', acc.timeZone
     assert_equal 'Developer', acc.tags
     assert_equal 'foobar.zoom@example.com', acc.zoomEmailAddress
-    assert_equal true, acc.contactHigh
-    assert_equal true, acc.contactLow
+    expected_client_state = '{"featureFlags":{"diagnostics":true},"oneOff":{"TERMS":true,"HIDE_BOOKING_LINK":true},"profileFolders":{}}'
+    assert_equal expected_client_state, acc.clientState
+    assert_equal false, acc.ghost
+    assert_equal 'ak_API_KEY', acc.apiKey
+    assert_equal 'st_SESSION_TOKEN', acc.sessionToken
+    assert_equal '2020-09-10T19:00:00Z', acc.sessionTokenExpiresAt
+    assert_equal '2020-09-01T10:00:00Z', acc.trialEndsAt
+    assert_equal 0, acc.negotiatedDiscountPermyriad
+    assert_equal 0, acc.lastWarningPushLevel
+    assert_equal '2020-09-02T10:00:00Z', acc.reviewAt
+    assert acc.contactHigh
+    assert acc.contactLow
+    assert acc.contactImportant
     assert_equal 730, acc.deleteBookingsAfterDays
-    assert_equal '{"featureFlags":{"diagnostics":true},"oneOff":{"TERMS":true,"HIDE_BOOKING_LINK":true},"profileFolders":{}}', acc.clientState
-    assert acc.profiles.is_a? Array
-    assert acc.children.is_a? Array
+    assert_equal 0, acc.deletedBookingsCount
+    assert_equal 1, acc.remoteAccounts.length
+    assert acc.permissionsIn.is_a? Array
+    assert acc.permissionsOut.is_a? Array
+    assert acc.cards.is_a? Array
+    assert acc.purchases.is_a? Array
     assert acc.warnings.is_a? Array
+    assert_equal 3, acc.profiles.length
+    assert_equal 0, acc.planMonthsWas
+    assert !acc.billingNameAndAddress.nil?
     assert_equal 'UPLOAD_CODE001', acc.uploadCode
-    assert_equal true, acc.hasBookings
+    assert acc.hasBookings
+    assert_equal 'foobar.zoom@example.com', acc.zoomEmailAddress
+    assert acc.allocations.is_a? Array
+    assert acc.children.is_a? Array
+    assert_equal 'not-used', acc.killBillId
     assert_equal 'REALTIME_TOPIC_001', acc.realtimeTopic
-    assert_equal true, acc.terms
+    assert_equal false, acc.needsSyncToPurchases
+    assert_equal false, acc.pastDue
+    assert_equal 0, acc.credit
+    assert acc.terms
+    assert_equal 'standard', acc.accountType
+    assert !acc.syncToPurchasesChanges.nil?
+    assert_equal false, acc.inDebugMode
+    assert_equal 0, acc.creditUSD
+    assert_equal 0, acc.creditGBP
+    assert_equal 0, acc.creditEUR
+    assert_equal 'trial', acc.lifecycle
+    assert_equal false, acc.paused
+    assert_equal 'FREE_USER', acc.type
   end
 
   def assert_account001_profiles_fields(acc)
@@ -468,7 +509,7 @@ module AssertHelper
     assert_equal 7, profile.actions.length
   end
 
-  private
+private
 
   def assert_error(proc, ex_message)
     e = assert_raises YouCanBookMe::Error do
