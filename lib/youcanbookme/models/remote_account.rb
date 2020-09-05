@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's RemoteAccount model.
   class RemoteAccount
     include ModelUtils
 
     ASSOCIATION = {
+      account: Account,
       calendars: Calendar,
       databaseVersion: RemoteAccount,
       links: Link,
-      localAccount: LocalAccount,
       provider: Provider
     }.freeze
 
@@ -17,6 +16,12 @@ module YouCanBookMe
     attr_accessor :accessToken
     # @return [String]
     attr_accessor :accessTokenExpiresAt
+    # @return [YouCanBookMe::Account]
+    attr_accessor :account
+    # @return [String]
+    attr_accessor :accountEmail
+    # @return [String]
+    attr_accessor :accountId
     # @return [String]
     attr_accessor :calendarHome
     # @return [Array<YouCanBookMe::Calendar>]
@@ -33,8 +38,6 @@ module YouCanBookMe
     attr_accessor :id
     # @return [Array<YouCanBookMe::Link>]
     attr_accessor :links
-    # @return [YouCanBookMe::LocalAccount>]
-    attr_accessor :localAccount
     # @return [String]
     attr_accessor :localAccountEmail
     # @return [String]
@@ -48,6 +51,7 @@ module YouCanBookMe
     # @return [String]
     attr_accessor :refreshToken
     # @return [String]
+    # ['invalidateCache']
     attr_accessor :requestedAction
     # @return [String]
     attr_accessor :revision

@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's ProfileRemoteAccount model.
   class ProfileRemoteAccount
     include ModelUtils
 
     ASSOCIATION = {
       calendars: ProfileCalendar
-    }
+    }.freeze
 
+    # @return [String]
+    attr_accessor :accountEmail
     # @return [Array<YouCanBookMe::ProfileCalendar>]
     attr_accessor :calendars
     # @return [String]

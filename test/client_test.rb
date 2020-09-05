@@ -43,14 +43,14 @@ module YouCanBookMe
 
       res_body = load_test_data 'account_001_many_fields.json'
       fields = YouCanBookMe::Account.fields
-      params = { fields: fields.join(',') }
+      params = {fields: fields.join(',')}
       url = "#{@base_host}?#{URI.encode_www_form(params)}"
       add_stub_request :get, url, res_body: res_body
       assert_account001_many_fields @client.account fields: fields
 
       res_body = load_test_data 'account_001_profiles_fields.json'
       fields = ['id', 'profiles', 'profiles.id', 'profiles.actions', 'profiles.actions.anchor', 'profiles.actions.title', 'profiles.actions.type']
-      params = { fields: fields.join(',') }
+      params = {fields: fields.join(',')}
       url = "#{@base_host}?#{URI.encode_www_form(params)}"
       add_stub_request :get, url, res_body: res_body
       assert_account001_profiles_fields @client.account fields: fields
@@ -70,7 +70,7 @@ module YouCanBookMe
 
       res_body = load_test_data 'booking_001_many_fields.json'
       fields = YouCanBookMe::Booking.fields
-      params = { fields: fields.join(',') }
+      params = {fields: fields.join(',')}
       url = "#{@base_host}/profiles/#{profile_id}/bookings/#{booking_id}?#{URI.encode_www_form(params)}"
       add_stub_request :get, url, res_body: res_body
       booking = @client.booking profile_id, booking_id, fields: fields
@@ -106,7 +106,7 @@ module YouCanBookMe
 
       res_body = load_test_data 'bookings_001_many_fields.json'
       fields = YouCanBookMe::Booking.fields
-      params = { fields: fields.join(',') }
+      params = {fields: fields.join(',')}
       url = "#{@base_host}/bookings?#{URI.encode_www_form(params)}"
       add_stub_request :get, url, res_body: res_body
       bookings = @client.bookings fields: fields
@@ -135,7 +135,7 @@ module YouCanBookMe
 
       res_body = load_test_data 'profile_bookings_001_many_fields.json'
       fields = YouCanBookMe::Booking.fields
-      params = { fields: fields.join(',') }
+      params = {fields: fields.join(',')}
       url = "#{@base_host}/profiles/#{profile_id}/bookings?#{URI.encode_www_form(params)}"
       add_stub_request :get, url, res_body: res_body
       bookings = @client.profile_bookings profile_id, fields: fields
@@ -164,7 +164,7 @@ module YouCanBookMe
 
       res_body = load_test_data 'profile_001_many_fields.json'
       fields = YouCanBookMe::Profile.fields
-      params = { fields: fields.join(',') }
+      params = {fields: fields.join(',')}
       url = "#{@base_host}/profiles/#{profile_id}?#{URI.encode_www_form(params)}"
       add_stub_request :get, url, res_body: res_body
       assert_profile001_many_fields @client.profile profile_id, fields: fields
@@ -192,7 +192,7 @@ module YouCanBookMe
 
       res_body = load_test_data 'profiles_001_many_fields.json'
       fields = YouCanBookMe::Profile.fields
-      params = { fields: fields.join(',') }
+      params = {fields: fields.join(',')}
       url = "#{@base_host}/profiles?#{URI.encode_www_form(params)}"
       add_stub_request :get, url, res_body: res_body
       profiles = @client.profiles fields: fields

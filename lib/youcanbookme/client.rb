@@ -148,10 +148,10 @@ module YouCanBookMe
       res.body[:free]
     end
 
-    private
+  private
 
     def check_not_empty(value, name)
-      raise YouCanBookMe::Error, "#{name} is required." if blank? value
+      raise YouCanBookMe::Error.new("#{name} is required.") if blank? value
     end
 
     def blank?(value)
@@ -197,9 +197,7 @@ module YouCanBookMe
 
     def map_as_collection(response, klass)
       items = response.body
-      unless items.is_a? Array
-        raise YouCanBookMe::Error, 'the response data is not Array.'
-      end
+      raise YouCanBookMe::Error.new('the response data is not Array.') unless items.is_a? Array
 
       items.map { |item| klass.new item, self }
     end

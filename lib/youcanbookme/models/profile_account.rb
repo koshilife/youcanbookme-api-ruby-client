@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's ProfileLocalAccount model.
-  class ProfileLocalAccount
+  class ProfileAccount
     include ModelUtils
 
     ASSOCIATION = {

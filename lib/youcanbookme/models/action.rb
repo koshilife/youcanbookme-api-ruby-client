@@ -8,6 +8,9 @@ module YouCanBookMe
     # @return [String]
     attr_accessor :accountId
     # @return [String]
+    # ['BOOKING_CREATED', 'BOOKING_RESCHEDULED', 'BOOKING_CANCELLED', 'BOOKING_RESCHEDULED_BY_OWNER',
+    #  'BOOKING_RESCHEDULED_BY_BOOKER', 'BOOKING_CANCELLED_BY_OWNER', 'BOOKING_CANCELLED_BY_BOOKER', 'BOOKING_ACCEPTED',
+    #  'BOOKING_REJECTED', 'BOOKING_STARTS', 'BOOKING_ENDS', 'booked', 'rescheduled', 'cancelled', 'start', 'end']
     attr_accessor :anchor
     # @return [Boolean]
     attr_accessor :attachIcs
@@ -66,6 +69,7 @@ module YouCanBookMe
     # @return [String]
     attr_accessor :profileId
     # @return [String]
+    # ['PREDICTION', 'TEMPLATE', 'OVERRIDEN', 'SKIPPED', 'SUCCEEDED', 'FAILED']
     attr_accessor :status
     # @return [String]
     attr_accessor :stylingTemplate
@@ -80,6 +84,7 @@ module YouCanBookMe
     # @return [String]
     attr_accessor :to
     # @return [String]
+    # ['ZAP', 'WEBHOOK', 'EMAIL', 'SMS', 'SALESFORCE_TASK', 'SALESFORCE_UPSERT']
     attr_accessor :type
     # @return [String]
     attr_accessor :updated

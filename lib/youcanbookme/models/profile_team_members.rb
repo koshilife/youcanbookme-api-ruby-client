@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's ProfileTeamMembers model.
   class ProfileTeamMembers
     include ModelUtils
 
@@ -12,6 +11,7 @@ module YouCanBookMe
     # @return [Boolean]
     attr_accessor :active
     # @return [String]
+    # ['ORDERED_FIRST_FREE', 'RANDOM_FIRST_FREE']
     attr_accessor :allocationStrategy
     # @return [Boolean]
     attr_accessor :allowTeamMemberChangeOnReschedule

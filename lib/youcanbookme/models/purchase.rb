@@ -1,19 +1,22 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's Purchase model.
   class Purchase
     include ModelUtils
 
     ASSOCIATION = {
-      localAccount: LocalAccount,
+      account: Account,
       nameAndAddress: NameAndAddress,
       transactions: Transaction,
       transactionsSorted: Transaction
     }.freeze
 
+    # @return [YouCanBookMe::Account]
+    attr_accessor :account
     # @return [Integer]
     attr_accessor :accountDiscount
+    # @return [String]
+    attr_accessor :accountId
     # @return [Boolean]
     attr_accessor :active
     # @return [Integer]
@@ -56,8 +59,6 @@ module YouCanBookMe
     attr_accessor :id
     # @return [Boolean]
     attr_accessor :liableForVAT
-    # @return [YouCanBookMe::LocalAccount]
-    attr_accessor :localAccount
     # @return [String]
     attr_accessor :localAccountId
     # @return [Integer]
@@ -95,10 +96,12 @@ module YouCanBookMe
     # @return [String]
     attr_accessor :regionHibernate
     # @return [String]
+    # ['setUpDispute', 'writeOff', 'retryPayment', 'refund']
     attr_accessor :requestedAction
     # @return [Boolean]
     attr_accessor :retryPayment
     # @return [String]
+    # ['ONGOING', 'PREVIEW', 'PERSIST', 'DAEMON', 'CHECKOUT', 'REAL', 'ONGOING_PREVIEW', 'RAW']
     attr_accessor :setUpMode
     # @return [Integer]
     attr_accessor :shortPeriodDiscount
@@ -115,6 +118,7 @@ module YouCanBookMe
     # @return [Array<YouCanBookMe::Transaction>]
     attr_accessor :transactionsSorted
     # @return [String]
+    # ['PURCHASE', 'RETURN', 'CASH_OUT', 'REVERSED_CHARGE', 'UNKNOWN']
     attr_accessor :type
     # @return [Integer]
     attr_accessor :unitPrice

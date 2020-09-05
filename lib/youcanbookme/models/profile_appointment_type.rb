@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's ProfileAppointmentType model.
   class ProfileAppointmentType
     include ModelUtils
 

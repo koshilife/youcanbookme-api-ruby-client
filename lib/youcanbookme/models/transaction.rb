@@ -1,17 +1,19 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's Transaction model.
   class Transaction
     include ModelUtils
 
     ASSOCIATION = {
+      account: Account,
       linked: Transaction,
-      purchase: Purchase,
+      purchase: Purchase
     }.freeze
 
-    # @return [String]
+    # @return [YouCanBookMe::Account]
     attr_accessor :account
+    # @return [String]
+    attr_accessor :accountId
     # @return [String]
     attr_accessor :createdAt
     # @return [String]
@@ -35,6 +37,7 @@ module YouCanBookMe
     # @return [Integer]
     attr_accessor :tax
     # @return [String]
+    # ['INVOICE', 'CREDIT_NOTE', 'FAILED_PAYMENT', 'PAYMENT', 'REFUND', 'CREDIT', 'USE_OF_CREDIT']
     attr_accessor :type
     # @return [String]
     attr_accessor :updatedAt

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's Booking model.
   class Booking
     include ModelUtils
 
@@ -9,8 +8,8 @@ module YouCanBookMe
       actions: Action,
       answers: Answer,
       appointmentTypes: ProfileAppointmentType,
-      caligraphEvent: CaligraphEvent,
       databaseVersion: Booking,
+      event: Event,
       lobby: BookingLobby,
       profile: Profile,
       services: ProfileAppointmentType,
@@ -33,8 +32,6 @@ module YouCanBookMe
     attr_accessor :appointmentTypesIds
     # @return [String]
     attr_accessor :bookerSecret
-    # @return [YouCanBookMe::CaligraphEvent]
-    attr_accessor :caligraphEvent
     # @return [Boolean]
     attr_accessor :cancelReasonRequired
     # @return [Boolean]
@@ -48,6 +45,7 @@ module YouCanBookMe
     # @return [String]
     attr_accessor :cancelledAt
     # @return [String]
+    # ['BOOKER', 'OWNER']
     attr_accessor :cancelledBy
     # @return [String]
     attr_accessor :createdAt
@@ -87,6 +85,8 @@ module YouCanBookMe
     attr_accessor :endsAt
     # @return [String]
     attr_accessor :endsAtUTC
+    # @return [YouCanBookMe::Event]
+    attr_accessor :event
     # @return [Integer]
     attr_accessor :expectedPrice
     # @return [String]
@@ -132,6 +132,7 @@ module YouCanBookMe
     # @return [String]
     attr_accessor :rescheduledAt
     # @return [String]
+    # ['BOOKER', 'OWNER']
     attr_accessor :rescheduledBy
     # @return [String]
     attr_accessor :reviewAt
@@ -154,6 +155,7 @@ module YouCanBookMe
     # @return [String]
     attr_accessor :teamMemberId
     # @return [String]
+    # ['NOT_USED', 'UNDECIDED', 'REJECTED', 'ACCEPTED']
     attr_accessor :tentative
     # @return [String]
     attr_accessor :timeZone
@@ -163,5 +165,7 @@ module YouCanBookMe
     attr_accessor :title
     # @return [Integer]
     attr_accessor :units
+    # @return [String]
+    attr_accessor :updatedAt
   end
 end

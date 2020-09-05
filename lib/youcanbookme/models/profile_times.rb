@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's ProfileTimes model.
   class ProfileTimes
     include ModelUtils
 
@@ -48,6 +47,7 @@ module YouCanBookMe
     # @return [Integer]
     attr_accessor :slotLengthMinutes
     # @return [String]
+    # ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY']
     attr_accessor :startingDayOfWeek
     # @return [Boolean]
     attr_accessor :sunActive
