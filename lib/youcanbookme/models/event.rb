@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's Event model.
   class Event
     include ModelUtils
 
     ASSOCIATION = {
       calendar: Calendar,
       links: Link,
-      participants: Participant,
-      reminders: Reminder
+      participants: EventParticipant,
+      reminders: EventReminder
     }.freeze
 
     # @return [String]
@@ -25,6 +24,7 @@ module YouCanBookMe
     # @return [Boolean]
     attr_accessor :dateOnly
     # @return [Integer]
+    # [0, 10, 20, 25, 30]
     attr_accessor :defaultShareLevel
     # @return [String]
     attr_accessor :description
@@ -35,8 +35,6 @@ module YouCanBookMe
     # @return [String]
     attr_accessor :endDateTime
     # @return [String]
-    attr_accessor :endInstant
-    # @return [String]
     attr_accessor :endTimeZone
     # @return [String]
     attr_accessor :endZonedDateTime
@@ -46,8 +44,6 @@ module YouCanBookMe
     attr_accessor :failure
     # @return [String]
     attr_accessor :foregroundColor
-    # @return [Boolean]
-    attr_accessor :hasDescription
     # @return [String]
     attr_accessor :id
     # @return [Array<YouCanBookMe::Link>]
@@ -56,7 +52,7 @@ module YouCanBookMe
     attr_accessor :location
     # @return [String]
     attr_accessor :metadata
-    # @return [Array<YouCanBookMe::Participant>]
+    # @return [Array<YouCanBookMe::EventParticipant>]
     attr_accessor :participants
     # @return [Boolean]
     attr_accessor :private
@@ -68,7 +64,7 @@ module YouCanBookMe
     attr_accessor :publicOnly
     # @return [Array<String>]
     attr_accessor :recurrences
-    # @return [Array<YouCanBookMe::Reminder>]
+    # @return [Array<YouCanBookMe::EventReminder>]
     attr_accessor :reminders
     # @return [Boolean]
     attr_accessor :restricted
@@ -89,6 +85,7 @@ module YouCanBookMe
     # @return [String]
     attr_accessor :startZonedDateTime
     # @return [String]
+    # ['confirmed', 'cancelled', 'tentative']
     attr_accessor :status
     # @return [String]
     attr_accessor :title

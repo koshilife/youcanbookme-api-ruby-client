@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's ProfilePayments model.
   class ProfilePayments
     include ModelUtils
 
@@ -12,6 +11,7 @@ module YouCanBookMe
     # @return [Integer]
     attr_accessor :currencyFactor
     # @return [String]
+    # ['STRIPE', 'PAYMILL']
     attr_accessor :partner
     # @return [String]
     attr_accessor :partnerDescription

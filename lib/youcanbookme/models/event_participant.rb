@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's Participant model.
-  class Participant
+  class EventParticipant
     include ModelUtils
 
     ASSOCIATION = {
@@ -18,8 +17,10 @@ module YouCanBookMe
     # @return [Boolean]
     attr_accessor :required
     # @return [String]
+    # ['Attendee', 'Organizer', 'Performer', 'Speaker', 'Chair', 'None', 'Optional', 'Required']
     attr_accessor :role
     # @return [String]
+    # ['Accepted', 'Declined', 'Invited', 'Tentative']
     attr_accessor :status
   end
 end

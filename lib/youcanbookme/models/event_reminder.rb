@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's Reminder model.
-  class Reminder
+  class EventReminder
     include ModelUtils
 
     ASSOCIATION = {
@@ -10,7 +9,8 @@ module YouCanBookMe
     }.freeze
 
     # @return [String]
-    attr_accessor :orm
+    # ['Email', 'PopUp', 'SMS']
+    attr_accessor :form
     # @return [String]
     attr_accessor :id
     # @return [Array<YouCanBookMe::Link>]

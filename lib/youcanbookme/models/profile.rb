@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's Profile model.
   class Profile
     include ModelUtils
 
@@ -9,7 +8,7 @@ module YouCanBookMe
       actions: Action,
       afterwards: ProfileAfterwards,
       appointmentTypes: ProfileAppointmentTypes,
-      availableAccounts: ProfileLocalAccount,
+      availableAccounts: ProfileAccount,
       calendars: ProfileCalendars,
       cancelOrReschedule: ProfileCancelOrReschedule,
       databaseVersion: Profile,
@@ -44,7 +43,7 @@ module YouCanBookMe
     attr_accessor :afterwards
     # @return [YouCanBookMe::ProfileAppointmentTypes]
     attr_accessor :appointmentTypes
-    # @return [Array<YouCanBookMe::ProfileLocalAccount>]
+    # @return [Array<YouCanBookMe::ProfileAccount>]
     attr_accessor :availableAccounts
     # @return [Array<YouCanBookMe::ProfileCalendars>]
     attr_accessor :calendars
@@ -85,10 +84,12 @@ module YouCanBookMe
     # @return [Array<YouCanBookMe::ProfileRemoteReminder>]
     attr_accessor :remoteReminders
     # @return [String]
+    # ['rescheduleBookingsForReview', 'migrateTo2049Theme']
     attr_accessor :requestedAction
     # @return [YouCanBookMe::ProfileAppointmentTypes]
     attr_accessor :services
     # @return [String]
+    # ['ONLINE', 'OFFLINE']
     attr_accessor :status
     # @return [String]
     attr_accessor :subdomain

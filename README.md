@@ -38,44 +38,41 @@ Or install it yourself as:
   - [ ] DELETE `/v1/{accountId}/profiles/{profileId}/appointmenttypes/items/{appointmentTypeId}`
 - Bookings:
   - [x] GET `/v1/{accountId}/bookings`
-  - [ ] GET `/v1/{accountId}/firedactions`
   - [x] GET `/v1/{accountId}/profiles/{profileId}/bookings`
   - [ ] POST `/v1/{accountId}/profiles/{profileId}/bookings`
   - [x] GET `/v1/{accountId}/profiles/{profileId}/bookings/{bookingId}`
   - [ ] PATCH `/v1/{accountId}/profiles/{profileId}/bookings/{bookingId}`
   - [ ] DELETE `/v1/{accountId}/profiles/{profileId}/bookings/{bookingId}`
-  - [ ] GET `/v1/{accountId}/profiles/{profileId}/firedactions`
   - [ ] GET `/v1/ics/{bookingSecret}/{bookingIdOrRef}.ics`
-  - [ ] GET `/v1/profiles/{profileIdOrSubdomain}/bookings/{bookingIdOrRef}/lobby`
-  - [ ] (Deprecated) GET `/v1/ics/{bookingRef}`
-  - [ ] (Deprecated) GET `/v1/ics/{bookingRef}.ics`
 - Calendars:
-  - [ ] GET `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}/calendars`
-  - [ ] POST `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}/calendars`
-  - [ ] GET `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
-  - [ ] PUT `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
-  - [ ] PATCH `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
-  - [ ] DELETE `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
+  - [ ] GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars`
+  - [ ] POST `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars`
+  - [ ] GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
+  - [ ] PUT `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
+  - [ ] PATCH `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
+  - [ ] DELETE `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
 - Events:
-  - [ ] POST `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events`
-  - [ ] GET `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}`
-  - [ ] DELETE `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}`
+  - [ ] POST `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events`
+  - [ ] GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}`
+  - [ ] PATCH `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}`
+  - [ ] DELETE `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}`
 - Profile
   - [x] GET `/v1/{accountId}/profiles`
   - [ ] POST `/v1/{accountId}/profiles`
   - [x] GET `/v1/{accountId}/profiles/{profileId}`
   - [ ] PATCH `/v1/{accountId}/profiles/{profileId}`
   - [ ] DELETE `/v1/{accountId}/profiles/{profileId}`
+  - [ ] GET `/v1/{accountId}/profiles/{profileId}/suggestedactions`
   - [x] GET `/v1/subdomains/{subdomain}`
   - [x] GET `/v1/suggestedsubdomains`
 - Query
-  - [ ] POST `/v1/{localAccountId}/queries`
+  - [ ] POST `/v1/{accountId}/queries`
 - Remote Account
-  - [ ] GET `/v1/{localAccountId}/remoteaccounts`
-  - [ ] POST `/v1/{localAccountId}/remoteaccounts`
-  - [ ] GET `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}`
-  - [ ] PATCH `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}`
-  - [ ] DELETE `/v1/{localAccountId}/remoteaccounts/{remoteAccountId}`
+  - [ ] GET `/v1/{accountId}/remoteaccounts`
+  - [ ] POST `/v1/{accountId}/remoteaccounts`
+  - [ ] GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}`
+  - [ ] PATCH `/v1/{accountId}/remoteaccounts/{remoteAccountId}`
+  - [ ] DELETE `/v1/{accountId}/remoteaccounts/{remoteAccountId}`
 - Team Members:
   - [ ] POST `/v1/{accountId}/profiles/{profileId}/teammembers/items`
   - [ ] PATCH `/v1/{accountId}/profiles/{profileId}/teammembers/items/{teamMemberId}`

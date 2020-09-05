@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's ProfileRemoteReminder model.
   class ProfileRemoteReminder
     include ModelUtils
 

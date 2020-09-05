@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module YouCanBookMe
-  # YouCanBookMe's Calendar model.
   class Calendar
     include ModelUtils
 
@@ -38,6 +37,7 @@ module YouCanBookMe
     # @return [Array<YouCanBookMe::Link>]
     attr_accessor :links
     # @return [Integer]
+    # [0, 10, 20, 30]
     attr_accessor :permissionLevel
     # @return [Boolean]
     attr_accessor :primary
