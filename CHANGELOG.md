@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.0.6.alpha
+
+- support APIs below.
+  - GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars`
+  - GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
+  - GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}`
+
 ## 0.0.5.alpha
 
 - support APIs below.

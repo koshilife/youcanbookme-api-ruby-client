@@ -45,15 +45,15 @@ Or install it yourself as:
   - [ ] DELETE `/v1/{accountId}/profiles/{profileId}/bookings/{bookingId}`
   - [ ] GET `/v1/ics/{bookingSecret}/{bookingIdOrRef}.ics`
 - Calendars:
-  - [ ] GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars`
+  - [x] GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars`
   - [ ] POST `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars`
-  - [ ] GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
+  - [x] GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
   - [ ] PUT `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
   - [ ] PATCH `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
   - [ ] DELETE `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}`
 - Events:
   - [ ] POST `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events`
-  - [ ] GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}`
+  - [x] GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}`
   - [ ] PATCH `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}`
   - [ ] DELETE `/v1/{accountId}/remoteaccounts/{remoteAccountId}/calendars/{calendarId}/events/{eventId}`
 - Profile

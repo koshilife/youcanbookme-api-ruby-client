@@ -386,6 +386,123 @@ module AssertHelper # rubocop:disable Metrics/ModuleLength
     assert_equal 'Sep 2, 2020 04:00:00 PM', book.displayCreatedAtMedium
   end
 
+  def assert_calendar001(calendar)
+    assert_equal 'RA001_CAL001', calendar.id
+    assert_equal 'CALENDAR 001', calendar.title
+    assert_equal 'Asia/Tokyo', calendar.timeZone
+    assert_equal true, calendar.primary
+  end
+
+  def assert_calendar001_many_fields(calendar)
+    assert_calendar001(calendar)
+    assert_equal '#000001', calendar.backgroundColor
+    assert_equal '#000001', calendar.foregroundColor
+    assert_equal 0, calendar.events.length
+    assert_equal false, calendar.deleted
+    assert_equal false, calendar.hidden
+    assert_equal false, calendar.changesRarely
+    assert_equal 30, calendar.permissionLevel
+    assert calendar.writeable
+    assert_equal 2, calendar.links.length
+    assert_equal 'foobar:CAL001@group.calendar.google.com', calendar.systemUniqueId
+    assert calendar.freeBusy
+    assert calendar.readable
+    assert_equal false, calendar.freeBusyOnly
+    assert_equal false, calendar.readableOnly
+    assert calendar.writeableOnly
+    assert_equal 'foobar@gmail.com', calendar.userName
+    assert_equal false, calendar.failed
+  end
+
+  def assert_calendar002(calendar)
+    assert_equal 'RA001_CAL002', calendar.id
+    assert_equal 'CALENDAR 002', calendar.title
+    assert_equal 'Asia/Tokyo', calendar.timeZone
+    assert_equal false, calendar.primary
+  end
+
+  def assert_calendar002_many_fields(calendar)
+    assert_calendar002(calendar)
+    assert_equal '#000002', calendar.backgroundColor
+    assert_equal '#000002', calendar.foregroundColor
+    assert_equal 0, calendar.events.length
+    assert_equal false, calendar.deleted
+    assert_equal false, calendar.hidden
+    assert calendar.changesRarely
+    assert_equal 20, calendar.permissionLevel
+    assert_equal false, calendar.writeable
+    assert_equal 2, calendar.links.length
+    assert_equal 'foobar:CAL002@group.v.calendar.google.com', calendar.systemUniqueId
+    assert calendar.freeBusy
+    assert calendar.readable
+    assert_equal false, calendar.freeBusyOnly
+    assert calendar.readableOnly
+    assert_equal false, calendar.writeableOnly
+    assert_equal 'foobar@gmail.com', calendar.userName
+    assert_equal false, calendar.failed
+  end
+
+  def assert_calendar003(calendar)
+    assert_equal 'RA001_CAL003', calendar.id
+    assert_equal 'CALENDAR 003', calendar.title
+    assert_equal 'Asia/Tokyo', calendar.timeZone
+    assert_equal false, calendar.primary
+  end
+
+  def assert_calendar003_many_fields(calendar)
+    assert_calendar003(calendar)
+    assert_equal '#000003', calendar.backgroundColor
+    assert_equal '#000003', calendar.foregroundColor
+    assert_equal 0, calendar.events.length
+    assert_equal false, calendar.deleted
+    assert_equal false, calendar.hidden
+    assert calendar.changesRarely
+    assert_equal 20, calendar.permissionLevel
+    assert_equal false, calendar.writeable
+    assert_equal 2, calendar.links.length
+    assert_equal 'foobar:CAL003@group.v.calendar.google.com', calendar.systemUniqueId
+    assert calendar.freeBusy
+    assert calendar.readable
+    assert_equal false, calendar.freeBusyOnly
+    assert calendar.readableOnly
+    assert_equal false, calendar.writeableOnly
+    assert_equal 'foobar@gmail.com', calendar.userName
+    assert_equal false, calendar.failed
+  end
+
+  def assert_event001(event)
+    assert_equal 'RA001_CAL001_EV001', event.id
+    assert_equal 'EVENT1 TITLE', event.title
+    assert_equal 'EVENT1 DESCRIPTION', event.description
+    assert_equal '2020-09-04T10:00:00', event.start
+    assert_equal 'Asia/Tokyo', event.startTimeZone
+    assert_equal '2020-09-04T11:00:00', event.end
+    assert_equal 'Asia/Tokyo', event.endTimeZone
+    assert_equal 'confirmed', event.status
+  end
+
+  def assert_event001_many_fields(event)
+    assert_event001(event)
+    assert_equal false, event.dateOnly
+    assert_equal false, event.transparent
+    assert_equal 0, event.defaultShareLevel
+    assert !event.metadata.nil?
+    assert event.participants.is_a? Array
+    assert event.reminders.is_a? Array
+    assert event.recurrences.is_a? Array
+    assert !event.calendar.nil?
+    assert_equal 5, event.links.length
+    assert_equal false, event.confidentialOnly
+    assert_equal false, event.confidential
+    assert_equal false, event.privateOnly
+    assert_equal false, event.publicOnly
+    assert_equal false, event.restrictedOnly
+    assert_equal false, event.restricted
+    assert_equal false, event.public
+    assert_equal false, event.private
+    assert_equal false, event.failed
+  end
+
   def assert_profile001(profile)
     assert_equal 'PRO001', profile.id
     assert_equal 'ACC001', profile.accountId

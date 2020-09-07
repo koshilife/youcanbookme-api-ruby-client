@@ -1,0 +1,20 @@
+[
+  {
+    "id": "RA001_CAL001",
+    "title": "CALENDAR 001",
+    "timeZone": "Asia/Tokyo",
+    "primary": true
+  },
+  {
+    "id": "RA001_CAL002",
+    "title": "CALENDAR 002",
+    "timeZone": "Asia/Tokyo",
+    "primary": false
+  },
+  {
+    "id": "RA001_CAL003",
+    "title": "CALENDAR 003",
+    "timeZone": "Asia/Tokyo",
+    "primary": false
+  }
+]

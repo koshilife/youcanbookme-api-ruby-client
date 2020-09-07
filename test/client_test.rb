@@ -119,6 +119,102 @@ module YouCanBookMe
     end
 
     #
+    # test for calendar
+    #
+
+    def test_that_it_returns_a_specific_calendar
+      remote_account_id = 'RA001'
+      calendar_id = 'RA001_CAL001'
+      res_body = load_test_data 'calendar_001.json'
+      url = "#{@base_host}/remoteaccounts/#{remote_account_id}/calendars/#{calendar_id}"
+      add_stub_request :get, url, res_body: res_body
+      assert_calendar001 @client.calendar remote_account_id, calendar_id
+
+      res_body = load_test_data 'calendar_001_many_fields.json'
+      fields = YouCanBookMe::Calendar.fields
+      params = {fields: fields.join(',')}
+      url = "#{@base_host}/remoteaccounts/#{remote_account_id}/calendars/#{calendar_id}?#{URI.encode_www_form(params)}"
+      add_stub_request :get, url, res_body: res_body
+      booking = @client.calendar remote_account_id, calendar_id, fields: fields
+      assert_calendar001_many_fields booking
+    end
+
+    def test_that_it_returns_an_argument_error_on_calendar
+      proc_remote_account_id_is_empty = proc do
+        @client.calendar '', 'calendar_id'
+      end
+      assert_required_error proc_remote_account_id_is_empty, 'remote_account_id'
+      proc_calendar_id_is_empty = proc do
+        @client.calendar 'remote_account_id', ''
+      end
+      assert_required_error proc_calendar_id_is_empty, 'calendar_id'
+    end
+
+    #
+    # test for calendars
+    #
+
+    def test_that_it_returns_all_items_of_calendars
+      remote_account_id = 'RA001'
+      res_body = load_test_data 'calendars_001.json'
+      url = "#{@base_host}/remoteaccounts/#{remote_account_id}/calendars"
+      add_stub_request :get, url, res_body: res_body
+      calendars = @client.calendars remote_account_id
+      assert_equal 3, calendars.length
+      assert_calendar001 calendars[0]
+      assert_calendar002 calendars[1]
+      assert_calendar003 calendars[2]
+
+      res_body = load_test_data 'calendars_001_many_fields.json'
+      fields = YouCanBookMe::Calendar.fields
+      params = {fields: fields.join(',')}
+      url = "#{@base_host}/remoteaccounts/#{remote_account_id}/calendars?#{URI.encode_www_form(params)}"
+      add_stub_request :get, url, res_body: res_body
+      calendars = @client.calendars remote_account_id, fields: fields
+      assert_equal 3, calendars.length
+      assert_calendar001_many_fields calendars[0]
+      assert_calendar002_many_fields calendars[1]
+      assert_calendar003_many_fields calendars[2]
+    end
+
+    #
+    # test for event
+    #
+
+    def test_that_it_returns_a_specific_event
+      remote_account_id = 'RA001'
+      calendar_id = 'RA001_CAL001'
+      event_id = 'RA001_CAL001_EV001'
+      res_body = load_test_data 'event_001.json'
+      url = "#{@base_host}/remoteaccounts/#{remote_account_id}/calendars/#{calendar_id}/events/#{event_id}"
+      add_stub_request :get, url, res_body: res_body
+      assert_event001 @client.event remote_account_id, calendar_id, event_id
+
+      res_body = load_test_data 'event_001_many_fields.json'
+      fields = YouCanBookMe::Event.fields
+      params = {fields: fields.join(',')}
+      url = "#{@base_host}/remoteaccounts/#{remote_account_id}/calendars/#{calendar_id}/events/#{event_id}?#{URI.encode_www_form(params)}"
+      add_stub_request :get, url, res_body: res_body
+      booking = @client.event remote_account_id, calendar_id, event_id, fields: fields
+      assert_event001_many_fields booking
+    end
+
+    def test_that_it_returns_an_argument_error_on_event
+      proc_remote_account_id_is_empty = proc do
+        @client.event '', 'cal_id', 'ev_id'
+      end
+      assert_required_error proc_remote_account_id_is_empty, 'remote_account_id'
+      proc_calendar_id_is_empty = proc do
+        @client.event 'remote_id', '', 'ev_id'
+      end
+      assert_required_error proc_calendar_id_is_empty, 'calendar_id'
+      proc_event_id_is_empty = proc do
+        @client.event 'remote_id', 'cal_id', ''
+      end
+      assert_required_error proc_event_id_is_empty, 'event_id'
+    end
+
+    #
     # test for profile_bookings
     #
 

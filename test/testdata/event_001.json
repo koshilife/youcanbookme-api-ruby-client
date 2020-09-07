@@ -1,0 +1,10 @@
+{
+  "id": "RA001_CAL001_EV001",
+  "title": "EVENT1 TITLE",
+  "description": "EVENT1 DESCRIPTION",
+  "start": "2020-09-04T10:00:00",
+  "startTimeZone": "Asia/Tokyo",
+  "end": "2020-09-04T11:00:00",
+  "endTimeZone": "Asia/Tokyo",
+  "status": "confirmed"
+}

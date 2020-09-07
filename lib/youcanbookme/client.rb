@@ -100,6 +100,57 @@ module YouCanBookMe
     end
 
     #
+    # Returns a single Calendar by its id.
+    #
+    # @param [String] remote_account_id the remote_account's unique id.
+    # @param [String] calendar_id the calendar's unique id.
+    # @param [Array<String>] fields the fields which are included in the response.
+    # @return [Calendar]
+    # @since 0.0.6
+    def calendar(remote_account_id, calendar_id, fields: nil)
+      check_not_empty remote_account_id, 'remote_account_id'
+      check_not_empty calendar_id, 'calendar_id'
+      params = build_fields_params fields
+      path = calendar_path remote_account_id, calendar_id
+      res = @connection.get path, params
+      Calendar.new res.body, self
+    end
+
+    #
+    # Get List of Calendar.
+    #
+    # @param [String] remote_account_id the remote_account's unique id.
+    # @param [Array<String>] fields the fields which are included in the response.
+    # @return [Array<Calendar>]
+    # @since 0.0.6
+    def calendars(remote_account_id, fields: nil)
+      check_not_empty remote_account_id, 'remote_account_id'
+      params = build_fields_params fields
+      path = calendar_path remote_account_id
+      res = @connection.get path, params
+      map_as_collection res, Calendar
+    end
+
+    #
+    # Returns a single Event by its id.
+    #
+    # @param [String] remote_account_id the remote_account's unique id.
+    # @param [String] calendar_id the calendar's unique id.
+    # @param [String] event_id the event's unique id.
+    # @param [Array<String>] fields the fields which are included in the response.
+    # @return [Event]
+    # @since 0.0.6
+    def event(remote_account_id, calendar_id, event_id, fields: nil)
+      check_not_empty remote_account_id, 'remote_account_id'
+      check_not_empty calendar_id, 'calendar_id'
+      check_not_empty event_id, 'event_id'
+      params = build_fields_params fields
+      path = event_path remote_account_id, calendar_id, event_id
+      res = @connection.get path, params
+      Event.new res.body, self
+    end
+
+    #
     # Returns a single Profile by its id.
     #
     # @param [String] profile_id the profile's unique id.
@@ -193,13 +244,6 @@ module YouCanBookMe
       "/#{API_VERSION}/#{@account_id}"
     end
 
-    def profile_path(profile_id = nil)
-      path = "#{account_path}/profiles"
-      return path unless profile_id
-
-      "#{path}/#{profile_id}"
-    end
-
     def booking_path(profile_id = nil, booking_id = nil)
       return "#{account_path}/bookings" unless profile_id
 
@@ -207,6 +251,29 @@ module YouCanBookMe
       return path unless booking_id
 
       "#{path}/#{booking_id}"
+    end
+
+    def calendar_path(remote_account_id, calendar_id = nil)
+      remote_path = remote_account_path remote_account_id
+      path = "#{remote_path}/calendars"
+      return path unless calendar_id
+
+      "#{path}/#{calendar_id}"
+    end
+
+    def event_path(remote_account_id, calendar_id, event_id = nil)
+      cal_path = calendar_path remote_account_id, calendar_id
+      path = "#{cal_path}/events"
+      return path unless event_id
+
+      "#{path}/#{event_id}"
+    end
+
+    def profile_path(profile_id = nil)
+      path = "#{account_path}/profiles"
+      return path unless profile_id
+
+      "#{path}/#{profile_id}"
     end
 
     def remote_account_path(remote_account_id = nil)
