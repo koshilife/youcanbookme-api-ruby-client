@@ -68,9 +68,9 @@ Or install it yourself as:
 - Query
   - [ ] POST `/v1/{accountId}/queries`
 - Remote Account
-  - [ ] GET `/v1/{accountId}/remoteaccounts`
+  - [x] GET `/v1/{accountId}/remoteaccounts`
   - [ ] POST `/v1/{accountId}/remoteaccounts`
-  - [ ] GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}`
+  - [x] GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}`
   - [ ] PATCH `/v1/{accountId}/remoteaccounts/{remoteAccountId}`
   - [ ] DELETE `/v1/{accountId}/remoteaccounts/{remoteAccountId}`
 - Team Members:

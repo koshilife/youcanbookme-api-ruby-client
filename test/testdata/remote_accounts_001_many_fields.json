@@ -1,0 +1,82 @@
+[
+  {
+    "id": "RA001",
+    "accountId": "ACC001",
+    "type": "google",
+    "username": "foobar@gmail.com",
+    "calendars": [{}, {}, {}, {}],
+    "accountEmail": "foobar@example.com",
+    "links": [
+      {
+        "id": "RA001",
+        "rel": "self",
+        "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001",
+        "type": "remoteAccount"
+      },
+      {
+        "id": "RA001_CAL001",
+        "rel": "calendar",
+        "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001/calendars/RA001_CAL001",
+        "type": "calendar"
+      },
+      {
+        "id": "RA001_CAL002",
+        "rel": "calendar",
+        "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001/calendars/RA001_CAL002",
+        "type": "calendar"
+      },
+      {
+        "id": "RA001_CAL003",
+        "rel": "calendar",
+        "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001/calendars/RA001_CAL003",
+        "type": "calendar"
+      },
+      {
+        "id": "RA001_CAL004",
+        "rel": "calendar",
+        "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001/calendars/RA001_CAL004",
+        "type": "calendar"
+      }
+    ],
+    "localAccountId": "LOCAL_ACC001",
+    "localAccountEmail": "foobar@example.com",
+    "failed": false
+  },
+  {
+    "id": "RA002",
+    "accountId": "ACC001",
+    "type": "microsoft",
+    "username": "foobar@outlook.com",
+    "calendars": [{}, {}, {}],
+    "accountEmail": "foobar@example.com",
+    "links": [
+      {
+        "id": "RA002",
+        "rel": "self",
+        "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA002",
+        "type": "remoteAccount"
+      },
+      {
+        "id": "RA002_CAL001",
+        "rel": "calendar",
+        "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA002/calendars/RA002_CAL001",
+        "type": "calendar"
+      },
+      {
+        "id": "RA002_CAL002",
+        "rel": "calendar",
+        "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA002/calendars/RA002_CAL002",
+        "type": "calendar"
+      },
+      {
+        "id": "RA002_CAL003",
+        "rel": "calendar",
+        "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA002/calendars/RA002_CAL003",
+        "type": "calendar"
+      }
+    ],
+    "localAccountId": "LOCAL_ACC001",
+    "localAccountEmail": "foobar@example.com",
+    "failed": false
+  }
+]

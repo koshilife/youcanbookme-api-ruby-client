@@ -33,9 +33,10 @@ module YouCanBookMe
       end
 
       # @param [String] prefix
+      # @param [Array<Symbol>] association_filters
       # @param [Integer] max_depth
       # @return [Array<String>]
-      def deep_fields(prefix = nil, max_depth: 3)
+      def deep_fields(prefix = nil, association_filters: nil, max_depth: 3) # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
         ret_fields = []
         fields(prefix).each do |field_with_prefix|
           ret_fields << field_with_prefix
@@ -43,13 +44,14 @@ module YouCanBookMe
           field = field_with_prefix.split('.')[-1].to_sym
           next unless defined? self::ASSOCIATION
           next unless self::ASSOCIATION.key? field
+          next if association_filters&.is_a?(Array) && !association_filters.include?(field)
 
           child_klass = self::ASSOCIATION[field]
           child_fields = if (self == child_klass) || depth >= max_depth
-                           c_klass.fields(field_with_prefix)
+                           child_klass.fields(field_with_prefix)
                          else
-                           c_klass.deep_fields(field_with_prefix, max_depth: max_depth)
-                     end
+                           child_klass.deep_fields(field_with_prefix, max_depth: max_depth)
+                         end
           child_fields.each { |c_field| ret_fields << c_field }
         end
         ret_fields
@@ -60,9 +62,9 @@ module YouCanBookMe
       base.extend ClassMethods
     end
 
-    private
+  private
 
-    def set_attributes(attrs)
+    def set_attributes(attrs) # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Naming/AccessorMethodName
       return if attrs.nil?
       return unless attrs.is_a? Hash
       return if attrs.empty?

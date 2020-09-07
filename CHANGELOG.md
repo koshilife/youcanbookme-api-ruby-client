@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.5.alpha
+
+- support APIs below.
+  - GET `/v1/{accountId}/remoteaccounts`
+  - GET `/v1/{accountId}/remoteaccounts/{remoteAccountId}`
+
 ## 0.0.4.alpha
 
 redefine models in order to follow changed APIs below.

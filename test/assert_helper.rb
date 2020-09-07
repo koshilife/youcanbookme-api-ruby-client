@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AssertHelper
+module AssertHelper # rubocop:disable Metrics/ModuleLength
   def assert_account001(acc)
     assert_equal 'ACC001', acc.id
     assert_equal 'foobar@example.com', acc.email
@@ -14,7 +14,7 @@ module AssertHelper
     assert_equal 0, acc.smsCredits
   end
 
-  def assert_account001_many_fields(acc)
+  def assert_account001_many_fields(acc) # rubocop:disable Metrics/MethodLength
     assert_account001(acc)
     assert_equal '2020-08-01T13:00:00Z', acc.createdAt
     assert_equal '2020-08-10T13:00:00Z', acc.updatedAt
@@ -72,7 +72,7 @@ module AssertHelper
     assert_equal 'FREE_USER', acc.type
   end
 
-  def assert_account001_profiles_fields(acc)
+  def assert_account001_profiles_fields(acc) # rubocop:disable Metrics/MethodLength
     proc_assert_profile = proc do |profile, expected_id|
       assert_equal expected_id, profile.id
       actions = profile.actions
@@ -129,7 +129,7 @@ module AssertHelper
     assert_equal false, book.cancelled
   end
 
-  def assert_booking_p001b001_many_fields(book)
+  def assert_booking_p001b001_many_fields(book) # rubocop:disable Metrics/MethodLength
     assert_booking_p001b001(book)
     assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/REMOTE001/calendars/foobar%40example.com/events/EV001', book.remoteId
     assert_equal 'en_US', book.locale
@@ -183,7 +183,7 @@ module AssertHelper
     assert_equal false, book.cancelled
   end
 
-  def assert_booking_p001b002_many_fields(book)
+  def assert_booking_p001b002_many_fields(book) # rubocop:disable Metrics/MethodLength
     assert_booking_p001b002(book)
     assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/REMOTE001/calendars/foobar%40example.com/events/EV002', book.remoteId
     assert_equal 'en_US', book.locale
@@ -237,7 +237,7 @@ module AssertHelper
     assert_equal false, book.cancelled
   end
 
-  def assert_booking_p001b003_many_fields(book)
+  def assert_booking_p001b003_many_fields(book) # rubocop:disable Metrics/MethodLength
     assert_booking_p001b003(book)
     assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/REMOTE001/calendars/foobar%40example.com/events/EV003', book.remoteId
     assert_equal 'en_US', book.locale
@@ -291,7 +291,7 @@ module AssertHelper
     assert_equal false, book.cancelled
   end
 
-  def assert_booking_p002b001_many_fields(book)
+  def assert_booking_p002b001_many_fields(book) # rubocop:disable Metrics/MethodLength
     assert_booking_p002b001(book)
     assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/REMOTE002/calendars/foobar%40example.com/events/EV001', book.remoteId
     assert_equal 'en_US', book.locale
@@ -345,7 +345,7 @@ module AssertHelper
     assert_equal false, book.cancelled
   end
 
-  def assert_booking_p003b001_many_fields(book)
+  def assert_booking_p003b001_many_fields(book) # rubocop:disable Metrics/MethodLength
     assert_booking_p003b001(book)
     assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/REMOTE003/calendars/foobar%40example.com/events/EV001', book.remoteId
     assert_equal 'en_US', book.locale
@@ -396,7 +396,7 @@ module AssertHelper
     assert_equal 'ONLINE', profile.status
   end
 
-  def assert_profile001_many_fields(profile)
+  def assert_profile001_many_fields(profile) # rubocop:disable Metrics/MethodLength
     assert_profile001(profile)
     assert_equal '2020-08-01T10:30:00Z', profile.createdAt
     assert_equal '2020-08-02T10:30:00Z', profile.updatedAt
@@ -437,7 +437,7 @@ module AssertHelper
     assert_equal 'OFFLINE', profile.status
   end
 
-  def assert_profile002_many_fields(profile)
+  def assert_profile002_many_fields(profile) # rubocop:disable Metrics/MethodLength
     assert_profile002(profile)
     assert_equal '2020-08-11T10:30:00Z', profile.createdAt
     assert_equal '2020-08-12T10:30:00Z', profile.updatedAt
@@ -478,7 +478,7 @@ module AssertHelper
     assert_equal 'ONLINE', profile.status
   end
 
-  def assert_profile003_many_fields(profile)
+  def assert_profile003_many_fields(profile) # rubocop:disable Metrics/MethodLength
     assert_profile003(profile)
     assert_equal '2020-08-21T10:30:00Z', profile.createdAt
     assert_equal '2020-08-22T10:30:00Z', profile.updatedAt
@@ -507,6 +507,87 @@ module AssertHelper
     assert !profile.services.nil?
     assert_equal '', profile.password
     assert_equal 7, profile.actions.length
+  end
+
+  def assert_remote_account001(r_acc)
+    assert_equal 'RA001', r_acc.id
+    assert_equal 'google', r_acc.type
+    assert_equal 'foobar@gmail.com', r_acc.username
+    assert_equal false, r_acc.failed
+  end
+
+  def assert_remote_account001_many_fields(r_acc) # rubocop:disable Metrics/MethodLength
+    assert_remote_account001(r_acc)
+    assert_equal 'ACC001', r_acc.accountId
+    assert_equal 4, r_acc.calendars.length
+    assert_equal 'foobar@example.com', r_acc.accountEmail
+    assert_equal 'LOCAL_ACC001', r_acc.localAccountId
+    assert_equal 'foobar@example.com', r_acc.localAccountEmail
+
+    assert_equal 5, r_acc.links.length
+    link = r_acc.links[0]
+    assert_equal 'RA001', link.id
+    assert_equal 'self', link.rel
+    assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001', link.href
+    assert_equal 'remoteAccount', link.type
+    link = r_acc.links[1]
+    assert_equal 'RA001_CAL001', link.id
+    assert_equal 'calendar', link.rel
+    assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001/calendars/RA001_CAL001', link.href
+    assert_equal 'calendar', link.type
+    link = r_acc.links[2]
+    assert_equal 'RA001_CAL002', link.id
+    assert_equal 'calendar', link.rel
+    assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001/calendars/RA001_CAL002', link.href
+    assert_equal 'calendar', link.type
+    link = r_acc.links[3]
+    assert_equal 'RA001_CAL003', link.id
+    assert_equal 'calendar', link.rel
+    assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001/calendars/RA001_CAL003', link.href
+    assert_equal 'calendar', link.type
+    link = r_acc.links[4]
+    assert_equal 'RA001_CAL004', link.id
+    assert_equal 'calendar', link.rel
+    assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001/calendars/RA001_CAL004', link.href
+    assert_equal 'calendar', link.type
+  end
+
+  def assert_remote_account002(r_acc)
+    assert_equal 'RA002', r_acc.id
+    assert_equal 'microsoft', r_acc.type
+    assert_equal 'foobar@outlook.com', r_acc.username
+    assert_equal false, r_acc.failed
+  end
+
+  def assert_remote_account002_many_fields(r_acc) # rubocop:disable Metrics/MethodLength
+    assert_remote_account002(r_acc)
+    assert_equal 'ACC001', r_acc.accountId
+    assert_equal 3, r_acc.calendars.length
+    assert_equal 'foobar@example.com', r_acc.accountEmail
+    assert_equal 'LOCAL_ACC001', r_acc.localAccountId
+    assert_equal 'foobar@example.com', r_acc.localAccountEmail
+
+    assert_equal 4, r_acc.links.length
+    link = r_acc.links[0]
+    assert_equal 'RA002', link.id
+    assert_equal 'self', link.rel
+    assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA002', link.href
+    assert_equal 'remoteAccount', link.type
+    link = r_acc.links[1]
+    assert_equal 'RA002_CAL001', link.id
+    assert_equal 'calendar', link.rel
+    assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA002/calendars/RA002_CAL001', link.href
+    assert_equal 'calendar', link.type
+    link = r_acc.links[2]
+    assert_equal 'RA002_CAL002', link.id
+    assert_equal 'calendar', link.rel
+    assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA002/calendars/RA002_CAL002', link.href
+    assert_equal 'calendar', link.type
+    link = r_acc.links[3]
+    assert_equal 'RA002_CAL003', link.id
+    assert_equal 'calendar', link.rel
+    assert_equal 'https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA002/calendars/RA002_CAL003', link.href
+    assert_equal 'calendar', link.type
   end
 
 private

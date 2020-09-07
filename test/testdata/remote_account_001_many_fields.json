@@ -1,0 +1,43 @@
+{
+  "id": "RA001",
+  "accountId": "ACC001",
+  "type": "google",
+  "username": "foobar@gmail.com",
+  "calendars": [{}, {}, {}, {}],
+  "accountEmail": "foobar@example.com",
+  "links": [
+    {
+      "id": "RA001",
+      "rel": "self",
+      "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001",
+      "type": "remoteAccount"
+    },
+    {
+      "id": "RA001_CAL001",
+      "rel": "calendar",
+      "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001/calendars/RA001_CAL001",
+      "type": "calendar"
+    },
+    {
+      "id": "RA001_CAL002",
+      "rel": "calendar",
+      "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001/calendars/RA001_CAL002",
+      "type": "calendar"
+    },
+    {
+      "id": "RA001_CAL003",
+      "rel": "calendar",
+      "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001/calendars/RA001_CAL003",
+      "type": "calendar"
+    },
+    {
+      "id": "RA001_CAL004",
+      "rel": "calendar",
+      "href": "https://api.youcanbook.me/v1/ACC001/remoteaccounts/RA001/calendars/RA001_CAL004",
+      "type": "calendar"
+    }
+  ],
+  "localAccountId": "LOCAL_ACC001",
+  "localAccountEmail": "foobar@example.com",
+  "failed": false
+}
