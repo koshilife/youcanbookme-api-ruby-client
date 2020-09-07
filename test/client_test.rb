@@ -4,7 +4,7 @@ require 'test_helper'
 
 module YouCanBookMe
   # test for YouCanBookMe::Client
-  class ClientTest < BaseTest
+  class ClientTest < BaseTest # rubocop:disable Metrics/ClassLength
     #
     # test for initialize
     #
@@ -92,7 +92,7 @@ module YouCanBookMe
     # test for bookings
     #
 
-    def test_that_it_returns_all_items_of_bookings
+    def test_that_it_returns_all_items_of_bookings # rubocop:disable Metrics/MethodLength
       res_body = load_test_data 'bookings_001.json'
       url = "#{@base_host}/bookings"
       add_stub_request :get, url, res_body: res_body
@@ -241,6 +241,31 @@ module YouCanBookMe
     end
 
     #
+    # test for remote_account
+    #
+
+    def test_that_it_returns_a_specific_remote_account
+      remote_account_id = 'RA001'
+      res_body = load_test_data 'remote_account_001.json'
+      add_stub_request :get, "#{@base_host}/remoteaccounts/#{remote_account_id}", res_body: res_body
+      assert_remote_account001 @client.remote_account remote_account_id
+
+      res_body = load_test_data 'remote_account_001_many_fields.json'
+      fields = YouCanBookMe::RemoteAccount.deep_fields(association_filters: [:links])
+      params = {fields: fields.join(',')}
+      url = "#{@base_host}/remoteaccounts/#{remote_account_id}?#{URI.encode_www_form(params)}"
+      add_stub_request :get, url, res_body: res_body
+      assert_remote_account001_many_fields @client.remote_account remote_account_id, fields: fields
+    end
+
+    def test_that_it_returns_an_argument_error_on_remote_account
+      proc_remote_account_id_is_empty = proc do
+        @client.remote_account ''
+      end
+      assert_required_error proc_remote_account_id_is_empty, 'remote_account_id'
+    end
+
+    #
     # test for remote_accounts
     #
 
@@ -265,31 +290,6 @@ module YouCanBookMe
       assert_equal 2, r_accs.length
       assert_remote_account001_many_fields r_accs[0]
       assert_remote_account002_many_fields r_accs[1]
-    end
-
-    #
-    # test for remote_account
-    #
-
-    def test_that_it_returns_a_specific_remote_account
-      remote_account_id = 'RA001'
-      res_body = load_test_data 'remote_account_001.json'
-      add_stub_request :get, "#{@base_host}/remoteaccounts/#{remote_account_id}", res_body: res_body
-      assert_remote_account001 @client.remote_account remote_account_id
-
-      res_body = load_test_data 'remote_account_001_many_fields.json'
-      fields = YouCanBookMe::RemoteAccount.deep_fields(association_filters: [:links])
-      params = {fields: fields.join(',')}
-      url = "#{@base_host}/remoteaccounts/#{remote_account_id}?#{URI.encode_www_form(params)}"
-      add_stub_request :get, url, res_body: res_body
-      assert_remote_account001_many_fields @client.remote_account remote_account_id, fields: fields
-    end
-
-    def test_that_it_returns_an_argument_error_on_remote_account
-      proc_remote_account_id_is_empty = proc do
-        @client.remote_account ''
-      end
-      assert_required_error proc_remote_account_id_is_empty, 'remote_account_id'
     end
   end
 end
