@@ -1,0 +1,23 @@
+{
+  "id": "RA001_CAL001",
+  "title": "CALENDAR 001",
+  "timeZone": "Asia/Tokyo",
+  "backgroundColor": "#000001",
+  "foregroundColor": "#000001",
+  "events": [],
+  "primary": true,
+  "deleted": false,
+  "hidden": false,
+  "changesRarely": false,
+  "permissionLevel": 30,
+  "writeable": true,
+  "links": [{}, {}],
+  "systemUniqueId": "foobar:CAL001@group.calendar.google.com",
+  "freeBusy": true,
+  "readable": true,
+  "freeBusyOnly": false,
+  "readableOnly": false,
+  "writeableOnly": true,
+  "userName": "foobar@gmail.com",
+  "failed": false
+}
