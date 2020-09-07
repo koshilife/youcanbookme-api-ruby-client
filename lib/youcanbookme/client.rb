@@ -2,7 +2,7 @@
 
 module YouCanBookMe
   # YouCanBookMe APIs client.
-  class Client
+  class Client # rubocop:disable Metrics/ClassLength
     API_HOST = 'https://api.youcanbook.me'
     API_VERSION = 'v1'
 
@@ -148,6 +148,34 @@ module YouCanBookMe
       res.body[:free]
     end
 
+    #
+    # Returns a single RemoteAccount by its id.
+    #
+    # @param [String] remote_account_id the remote account's unique id.
+    # @param [Array<String>] fields the fields which are included in the response.
+    # @return [YouCanBookMe::RemoteAccount]
+    # @raise [YouCanBookMe::Error] if the subdomain arg is empty.
+    # @since 0.0.5
+    def remote_account(remote_account_id, fields: nil)
+      check_not_empty remote_account_id, 'remote_account_id'
+      params = build_fields_params fields
+      path = remote_account_path(remote_account_id)
+      res = @connection.get path, params
+      RemoteAccount.new res.body, self
+    end
+
+    #
+    # Get List of Remote Account.
+    #
+    # @param [Array<String>] fields the fields which are included in the response.
+    # @return [Array<YouCanBookMe::RemoteAccount>]
+    # @since 0.0.5
+    def remote_accounts(fields: nil)
+      params = build_fields_params fields
+      res = @connection.get remote_account_path, params
+      map_as_collection res, RemoteAccount
+    end
+
   private
 
     def check_not_empty(value, name)
@@ -179,6 +207,13 @@ module YouCanBookMe
       return path unless booking_id
 
       "#{path}/#{booking_id}"
+    end
+
+    def remote_account_path(remote_account_id = nil)
+      path = "#{account_path}/remoteaccounts"
+      return path unless remote_account_id
+
+      "#{path}/#{remote_account_id}"
     end
 
     def build_option_params(options, filters, fields: nil)

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "RA001",
+    "type": "google",
+    "username": "foobar@gmail.com",
+    "failed": false
+  },
+  {
+    "id": "RA002",
+    "type": "microsoft",
+    "username": "foobar@outlook.com",
+    "failed": false
+  }
+]

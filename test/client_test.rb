@@ -239,5 +239,57 @@ module YouCanBookMe
       end
       assert_required_error proc_subdomain_is_empty, 'subdomain'
     end
+
+    #
+    # test for remote_accounts
+    #
+
+    def test_that_it_returns_all_items_of_remote_accounts
+      res_ok_body = load_test_data 'remote_accounts_001.json'
+      ok_url = "#{@base_host}/remoteaccounts"
+      add_stub_request :get, ok_url, res_body: res_ok_body
+      r_accs = @client.remote_accounts
+
+      assert_equal 2, r_accs.length
+      assert_remote_account001 r_accs[0]
+      assert_remote_account002 r_accs[1]
+
+      res_ok_body = load_test_data 'remote_accounts_001_many_fields.json'
+      fields = YouCanBookMe::RemoteAccount.deep_fields(association_filters: [:links])
+      params = {fields: fields.join(',')}
+      url = "#{@base_host}/remoteaccounts?#{URI.encode_www_form(params)}"
+      add_stub_request :get, url, res_body: res_ok_body
+
+      r_accs = @client.remote_accounts fields: fields
+
+      assert_equal 2, r_accs.length
+      assert_remote_account001_many_fields r_accs[0]
+      assert_remote_account002_many_fields r_accs[1]
+    end
+
+    #
+    # test for remote_account
+    #
+
+    def test_that_it_returns_a_specific_remote_account
+      remote_account_id = 'RA001'
+      res_body = load_test_data 'remote_account_001.json'
+      add_stub_request :get, "#{@base_host}/remoteaccounts/#{remote_account_id}", res_body: res_body
+      assert_remote_account001 @client.remote_account remote_account_id
+
+      res_body = load_test_data 'remote_account_001_many_fields.json'
+      fields = YouCanBookMe::RemoteAccount.deep_fields(association_filters: [:links])
+      params = {fields: fields.join(',')}
+      url = "#{@base_host}/remoteaccounts/#{remote_account_id}?#{URI.encode_www_form(params)}"
+      add_stub_request :get, url, res_body: res_body
+      assert_remote_account001_many_fields @client.remote_account remote_account_id, fields: fields
+    end
+
+    def test_that_it_returns_an_argument_error_on_remote_account
+      proc_remote_account_id_is_empty = proc do
+        @client.remote_account ''
+      end
+      assert_required_error proc_remote_account_id_is_empty, 'remote_account_id'
+    end
   end
 end
